@@ -63,4 +63,18 @@ pip install vana
    vanacli wallet export_private_key
    ```
    Tekan Enter,Pilih jenis wallet Hotkey Dan Buat kata sandi
-   Simpan kedua wallwtdan import wallet ke metamask
+   Simpan kedua wallet dan import wallet ke metamask
+
+   Klaim Faucet isi kedua wallet
+   [Faucet Vana](https://faucet.vana.org)
+
+ ## Creating a DLP
+   ```bash
+    ./keygen.sh
+   ```
+   Masukkan Email dan enter
+ ## Deploying a DLP Smart Contract
+    Download the repository
+   ```bash
+   cd && git clone https://github.com/vana-com/vana-dlp-smart-contracts.git && cd vana-dlp-smart-contracts
+   ```
