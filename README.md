@@ -70,7 +70,7 @@ pip install vana
    ```bash
    vanacli wallet export_private_key
    ```
-   Tekan Enter pilih Jenis wallet Hotkey Dan Buat kata sandi
+   Tekan Enter pilih Jenis wallet Coldkey Dan Buat kata sandi
    **Export privatkey Hot wallet**
    ```bash
    vanacli wallet export_private_key
