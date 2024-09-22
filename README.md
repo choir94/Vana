@@ -16,24 +16,24 @@ sudo apt update
 sudo apt install python3.11 -y
 ```
 ## Install Poetry
-'''bash
+```bash
 sudo apt install python3-pip python3-venv curl -y && curl -sSL https://install.python-poetry.org | python3 -
-'''
--Export
-'''bash
+```
+- Export
+```bash
 export PATH="$HOME/.local/bin:$PATH" && source ~/.bashrc
-'''
+```
 ## Install Node.js and npm
-'''bash
+```bash
 https://fnm.vercel.app/install | bash  && source ~/.bashrc && fnm use --install-if-missing 22
-'''
+```
 ## Installing dependencies
-'''bash
+```bash
 apt-get install nodejs -y && npm install -g yarn
-'''
+```
 ## Clone the repository Vana
-'''bash
+```bash
 git clone https://github.com/vana-com/vana-dlp-chatgpt.git && cd vana-dlp-chatgpt
-'''
+```
 ## 
 
