@@ -185,6 +185,10 @@ sudo apt install tmux && tmux new-session -s VANA
 ```bash
 poetry run python -m chatgpt.nodes.validator
 ```
+Untuk Cek logs
+```bash
+sudo journalctl -u vana.service -f
+```
 
 ## Done
 Join Channel AirDrop Node Untuk diskusi
