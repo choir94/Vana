@@ -1,4 +1,3 @@
-# Vana Node
 
 
 ## Prerequisites
@@ -46,3 +45,22 @@ poetry install
 ## Install Cli
 ```bash
 pip install vana
+```
+## Steps to Create a New Wallet
+
+1. **Create the Wallet**
+   ```bash
+   vanacli wallet create --wallet.name default --wallet.hotkey default
+   ```
+   Simpan Phrase Hotkey wallet dan Coldkey wallet
+2. **Export privatkey Cold wallet **
+   ```bash
+   vanacli wallet export_private_key
+   ```
+   Tekan Enter pilih Jenis wallet Hotkey Dan Buat kata sandi
+   **Export privatkey Hot wallet**
+   ```bash
+   vanacli wallet export_private_key
+   ```
+   Tekan Enter,Pilih jenis wallet Hotkey Dan Buat kata sandi
+   Simpan kedua wallwtdan import wallet ke metamask
