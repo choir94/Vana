@@ -63,6 +63,9 @@ poetry install
 ```
 ## Install Cli
 ```bash
+apt install python3-pip
+```
+```bash
 pip install vana
 ```
 ## Steps to Create a New Wallet
