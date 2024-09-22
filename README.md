@@ -16,7 +16,7 @@ Join Channel AirDrop Node Untuk diskusi
 sudo apt update && sudo apt upgrade -y && sudo apt-get install git -y && sudo apt install unzip && sudo apt install nano
 ```
 ```bash
-git clone https://github.com/vana-com/vana-dlp-chatgpt.git cd vana-dlp-chatgpt
+git clone https://github.com/vana-com/vana-dlp-chatgpt.git && cd vana-dlp-chatgpt
 ```
 ```bash
 cp .env.example .env
