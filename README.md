@@ -1,11 +1,16 @@
 ### VANA GUIDE DLP VALIDATOR
 <img src="https://github.com/choir94/Vana/blob/main/Vanafounr.jpg?raw=true" alt="Vana Logo" width="400"/>
 
+Sebelum menjalankan nodenya kerjakan dulu Task bot telegram
+Vana Data Hero Mining:
 
+https://t.me/VanaDataHeroBot/VanaDataHero?startapp=5649265696
 
+Join Channel AirDrop Node Untuk diskusi
 
+[AIRDROP NODE](https://t.me/airdrop_node)
 
-##Make sure your system is up to date before proceeding with the installation.
+## STEP BY STEP
 ## Update and Upgrade
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt-get install git -y && sudo apt install unzip && sudo apt install nano
@@ -114,6 +119,16 @@ npx hardhat verify --network satori <YOUR_DataLiquidityPoolToken_address> "<YOUR
 
 Jika ada error skip dan lanjut
 
+## Configure the DLP contract (DataLiquidityPool):
+Visit 
+https://satori.vanascan.io/address/YOUR_DLP_POOL_CONTRACT_ADDRESS
+
+Go to "Write proxy" tab
+
+Connect cold wallet yang telah di import tadi
+Cari teks updateFileRewardDelay and set it to 0 klik konfirmasi di metamask
+
+Kemudian cari addRewardsForContributors with 1000000000000000000000000 (1 million tokens) konfirmasi metamask
 ## Installing the validator
 - Creating OpenAI API
 Open link:
@@ -170,3 +185,8 @@ sudo apt install tmux && tmux new-session -s VANA
 ```bash
 poetry run python -m chatgpt.nodes.validator
 ```
+
+## Done
+Join Channel AirDrop Node Untuk diskusi
+
+[AIRDROP NODE](https://t.me/airdrop_node)
