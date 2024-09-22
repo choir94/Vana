@@ -23,7 +23,7 @@ sudo apt update
 sudo apt install python3.11 python3.11-venv python3.11-dev
 ```
 ```bash
-python3.11 --version
+apt python3.11 --version
 ```
 ## Install Poetry
 ```bash
