@@ -97,8 +97,14 @@ pip install vana
    Masukkan Email dan enter
  ## Deploying a DLP Smart Contract
    ```bash
-   cd && git clone https://github.com/vana-com/vana-dlp-smart-contracts.git && cd vana-dlp-smart-contracts
+   cd $HOME
+git clone https://github.com/vana-com/vana-dlp-smart-contracts.git
+cd vana-dlp-smart-contracts
    ```
+```bash
+npm install -g yarn
+yarn --version
+```
 ```bash
 yarn install
 ```
