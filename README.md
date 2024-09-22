@@ -104,7 +104,7 @@ DLP_NAME=… (your chosen DLP name)
 DLP_TOKEN_NAME=… (your chosen DLP token name)
 DLP_TOKEN_SYMBOL=… (your chosen DLP token symbol)
 ```
-Keluar dari file env CTRL + AD
+Keluar dari file env CTRL + X Y
 
 - Deploying a contract
 ```bash
