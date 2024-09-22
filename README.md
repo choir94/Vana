@@ -11,6 +11,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt-get install git -y
 sudo apt install unzip
 sudo apt install nano
+```bash
 
 ### Install Python 3.11
 ```bash
