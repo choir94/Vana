@@ -11,48 +11,54 @@ Join Channel AirDrop Node Untuk diskusi
 [AIRDROP NODE](https://t.me/airdrop_node)
 
 ## STEP BY STEP
-## Update and Upgrade
+## Clone the repository
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt-get install git -y && sudo apt install unzip && sudo apt install nano
 ```
-## Install Python 3.11
 ```bash
-sudo apt install software-properties-common -y && sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.11 -y
+git clone https://github.com/vana-com/vana-dlp-chatgpt.git cd vana-dlp-chatgpt
 ```
-## Install Poetry
-```bash
-sudo apt install python3-pip python3-venv curl -y && curl -sSL https://install.python-poetry.org | python3 -
-```
-- Export
-```bash
-export PATH="$HOME/.local/bin:$PATH" && source ~/.bashrc
-```
-## Install Node.js and npm
-```bash
-curl -fsSL https://fnm.vercel.app/install | bash  && source ~/.bashrc && fnm use --install-if-missing 22
-```
-## Installing dependencies
-```bash
-apt-get install nodejs -y && npm install -g yarn
-```
-## Clone the repository Vana
-```bash
-git clone https://github.com/vana-com/vana-dlp-chatgpt.git && cd vana-dlp-chatgpt
-```
-## Create a .env file
 ```bash
 cp .env.example .env
 ```
-## Installing dependencies
+
+## Install Dependencies (phyton 3.11.4) + pyenv
 ```bash
-poetry install
+sudo apt update
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 ```
-## Install Cli
+```bash
+curl https://pyenv.run | bash
+```
+```bash
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+```bash
+source ~/.bashrc
+```
+```bash
+pyenv install 3.11.4
+```
+```bash
+cd ~/vana-dlp-chatgpt
+pyenv local 3.11.4
+```
+```bash
+python --version
+```
+```bash
+poetry env use $(pyenv which python)
+```
+```bash
+cd ~/vana-dlp-chatgpt
+```
 ```bash
 pip install vana
 ```
+
 ## Steps to Create a New Wallet
 
 1. **Create the Wallet**
