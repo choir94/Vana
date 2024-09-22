@@ -1,4 +1,6 @@
-### VANA DLP VALIDATOR
+### VANA GUIDE DLP VALIDATOR
+<img src="https://github.com/choir94/Vana/blob/main/Vanafounr.jpg?raw=true" alt="Vana Logo" width="400"/>
+
 
 
 
