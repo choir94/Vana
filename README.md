@@ -25,7 +25,7 @@ export PATH="$HOME/.local/bin:$PATH" && source ~/.bashrc
 ```
 ## Install Node.js and npm
 ```bash
-https://fnm.vercel.app/install | bash  && source ~/.bashrc && fnm use --install-if-missing 22
+curl -fsSL https://fnm.vercel.app/install | bash  && source ~/.bashrc && fnm use --install-if-missing 22
 ```
 ## Installing dependencies
 ```bash
@@ -35,5 +35,14 @@ apt-get install nodejs -y && npm install -g yarn
 ```bash
 git clone https://github.com/vana-com/vana-dlp-chatgpt.git && cd vana-dlp-chatgpt
 ```
-## 
-
+## Create a .env file
+```bash
+cp .env.example .env
+```
+## Installing dependencies
+```bash
+poetry install
+```
+## Install Cli
+```bash
+pip install vana
