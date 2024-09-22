@@ -11,54 +11,60 @@ Join Channel AirDrop Node Untuk diskusi
 [AIRDROP NODE](https://t.me/airdrop_node)
 
 ## STEP BY STEP
-## Clone the repository
-```bash
-sudo apt update && sudo apt upgrade -y && sudo apt-get install git -y && sudo apt install unzip && sudo apt install nano
-```
-```bash
-git clone https://github.com/vana-com/vana-dlp-chatgpt.git && cd vana-dlp-chatgpt
-```
-```bash
-cp .env.example .env
-```
 
-## Install Dependencies (phyton 3.11.4) + pyenv
+## Install Dependencies (phyton 3.11)
 ```bash
 sudo apt update
-sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+sudo apt install software-properties-common
 ```
 ```bash
-curl https://pyenv.run | bash
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.11 python3.11-venv python3.11-dev
 ```
 ```bash
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+python3.11 --version
+```
+## Install Poetry
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 ```bash
-source ~/.bashrc
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+poetry --version
+```
+## Install Node js dan Npm
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 ```
 ```bash
-pyenv install 3.11.4
+echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bash_profile
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME/.bash_profile
+echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> $HOME/.bash_profile
+
+source $HOME/.bash_profile 
 ```
 ```bash
-cd ~/vana-dlp-chatgpt
-pyenv local 3.11.4
+nvm install --lts
 ```
 ```bash
-python --version
+node -v
+npm -v
 ```
+## Clone the repository
 ```bash
-poetry env use $(pyenv which python)
+git clone https://github.com/vana-com/vana-dlp-chatgpt.git
+cd vana-dlp-chatgpt
 ```
+## Install Dependencies
 ```bash
-cd ~/vana-dlp-chatgpt
+poetry install
 ```
+## Install Cli
 ```bash
 pip install vana
 ```
-
 ## Steps to Create a New Wallet
 
 1. **Create the Wallet**
