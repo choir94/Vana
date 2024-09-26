@@ -2,7 +2,9 @@
 
 # Lokasi penyimpanan skrip
 SCRIPT_PATH="$HOME/vana.sh"
-
+# Tampilkan Logo
+curl -s https://raw.githubusercontent.com/choir94/Airdropguide/refs/heads/main/logo.sh | bash
+sleep 4
 # Fungsi untuk menginstal Git
 function install_git() {
     if ! git --version &> /dev/null; then
