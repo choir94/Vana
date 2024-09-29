@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Path untuk instalasi DLP Validator
+# Jalur instalasi DLP Validator
 DLP_PATH="$HOME/vana-dlp-chatgpt"
 
-# Memeriksa apakah skrip dijalankan sebagai user root
+# Periksa apakah skrip dijalankan sebagai pengguna root
 if [ "$(id -u)" != "0" ]; then
     echo "Skrip ini harus dijalankan dengan hak akses root."
-    echo "Cobalah gunakan perintah 'sudo -i' untuk beralih ke pengguna root, lalu jalankan skrip ini lagi."
+    echo "Coba gunakan perintah 'sudo -i' untuk beralih ke pengguna root, lalu jalankan ulang skrip ini."
     exit 1
 fi
 
@@ -43,7 +43,7 @@ function install_nodejs_and_npm() {
     if command -v node > /dev/null 2>&1; then
         echo "Node.js sudah terinstal, versi: $(node -v)"
     else
-        echo "Node.js belum terinstal, menginstal sekarang..."
+        echo "Node.js belum terinstal, menginstal..."
         curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
         apt-get install -y nodejs
     fi
@@ -52,7 +52,7 @@ function install_nodejs_and_npm() {
     if command -v npm > /dev/null 2>&1; then
         echo "npm sudah terinstal, versi: $(npm -v)"
     else
-        echo "npm belum terinstal, menginstal sekarang..."
+        echo "npm belum terinstal, menginstal..."
         apt-get install -y npm
     fi
 }
@@ -63,7 +63,7 @@ function install_pm2() {
     if command -v pm2 > /dev/null 2>&1; then
         echo "PM2 sudah terinstal, versi: $(pm2 -v)"
     else
-        echo "PM2 belum terinstal, menginstal sekarang..."
+        echo "PM2 belum terinstal, menginstal..."
         npm install pm2@latest -g
     fi
 }
@@ -94,25 +94,25 @@ function create_wallet() {
 
     echo "Pastikan Anda telah menambahkan jaringan Vana Moksha Testnet di MetaMask."
     echo "Ikuti langkah-langkah manual berikut:"
-    echo "1. URL RPC: https://rpc.moksha.vana.org"
+    echo "1. RPC URL: https://rpc.moksha.vana.org"
     echo "2. Chain ID: 14800"
-    echo "3. Nama Jaringan: Vana Moksha Testnet"
-    echo "4. Mata Uang: VANA"
+    echo "3. Nama jaringan: Vana Moksha Testnet"
+    echo "4. Mata uang: VANA"
     echo "5. Block Explorer: https://moksha.vanascan.io"
 }
 
-# Mengekspor kunci privat
+# Mengekspor kunci pribadi
 function export_private_keys() {
-    echo "Mengekspor kunci privat Coldkey..."
+    echo "Mengekspor kunci pribadi Coldkey..."
     ./vanacli wallet export_private_key --wallet.name default --wallet.coldkey default
 
-    echo "Mengekspor kunci privat Hotkey..."
+    echo "Mengekspor kunci pribadi Hotkey..."
     ./vanacli wallet export_private_key --wallet.name default --wallet.hotkey default
 
-    # Konfirmasi backup
-    read -p "Apakah Anda sudah membackup kunci privat? (y/n) " backup_confirmed
-    if [ "$backup_confirmed" != "y" ];then
-        echo "Harap backup mnemonic Anda terlebih dahulu, kemudian lanjutkan skrip."
+    # Konfirmasi cadangan
+    read -p "Apakah Anda sudah mencadangkan kunci pribadi? (y/n) " backup_confirmed
+    if [ "$backup_confirmed" != "y" ]; then
+        echo "Silakan cadangkan mnemonic terlebih dahulu, lalu lanjutkan skrip."
         exit 1
     fi
 }
@@ -129,8 +129,8 @@ function write_public_key_to_env() {
     PUBLIC_KEY_FILE="$DLP_PATH/public_key_base64.asc"
     ENV_FILE="$DLP_PATH/.env"
 
-    # Memeriksa apakah file kunci publik ada
-    if [ ! -f "$PUBLIC_KEY_FILE" ];then
+    # Periksa apakah file kunci publik ada
+    if [ ! -f "$PUBLIC_KEY_FILE" ]; then
         echo "File kunci publik tidak ditemukan: $PUBLIC_KEY_FILE"
         exit 1
     fi
@@ -144,9 +144,9 @@ function write_public_key_to_env() {
     echo "Kunci publik berhasil ditulis ke file .env."
 }
 
-# Mendeploy smart contract DLP
+# Men-deploy kontrak pintar DLP
 function deploy_smart_contracts() {
-    echo "Mengkloning repositori smart contract DLP..."
+    echo "Mengkloning repositori kontrak pintar DLP..."
     cd $HOME
     rm -rf vana-dlp-smart-contracts
     git clone https://github.com/Josephtran102/vana-dlp-smart-contracts
@@ -157,28 +157,28 @@ function deploy_smart_contracts() {
     echo "Memverifikasi versi Yarn..."
     yarn --version
 
-    echo "Menginstal dependensi smart contract..."
+    echo "Menginstal dependensi kontrak pintar..."
     yarn install
 
     echo "Menyalin dan mengedit file .env..."
     cp .env.example .env
-    nano .env  # Edit file .env secara manual, isi informasi terkait smart contract
+    nano .env  # Edit file .env secara manual, isi informasi kontrak
 
-    echo "Mendeploy smart contract ke jaringan Moksha Testnet..."
+    echo "Men-deploy kontrak pintar ke jaringan testnet Moksha..."
     npx hardhat deploy --network moksha --tags DLPDeploy
 }
 
-# Mendaftarkan Validator
+# Mendaftarkan validator
 function register_validator() {
     cd $HOME
     cd vana-dlp-chatgpt
-    echo "Mendaftarkan Validator..."
+    echo "Mendaftarkan validator..."
     ./vanacli dlp register_validator --stake_amount 10
 
     # Mendapatkan alamat Hotkey
     read -p "Masukkan alamat dompet Hotkey Anda: " HOTKEY_ADDRESS
 
-    echo "Menyetujui Validator..."
+    echo "Menyetujui validator..."
     ./vanacli dlp approve_validator --validator_address="$HOTKEY_ADDRESS"
 }
 
@@ -186,8 +186,8 @@ function register_validator() {
 function create_env_file() {
     echo "Membuat file .env..."
     read -p "Masukkan alamat kontrak DLP: " DLP_CONTRACT
-    read -p "Masukkan alamat kontrak Token DLP: " DLP_TOKEN_CONTRACT
-    read -p "Masukkan OpenAI API Key: " OPENAI_API_KEY
+    read -p "Masukkan alamat kontrak token DLP: " DLP_TOKEN_CONTRACT
+    read -p "Masukkan API Key OpenAI: " OPENAI_API_KEY
 
     cat <<EOF > $DLP_PATH/.env
 # Jaringan yang digunakan, saat ini Vana Moksha testnet
@@ -197,10 +197,10 @@ OD_CHAIN_NETWORK_ENDPOINT=https://rpc.moksha.vana.org
 # Opsional: Kunci API OpenAI untuk pemeriksaan kualitas data tambahan
 OPENAI_API_KEY="$OPENAI_API_KEY"
 
-# Opsional: Alamat kontrak pintar DLP Anda sendiri setelah dideploy ke jaringan, berguna untuk pengujian lokal
+# Opsional: Alamat kontrak pintar DLP Anda yang telah di-deploy ke jaringan, berguna untuk pengujian lokal
 DLP_MOKSHA_CONTRACT="$DLP_CONTRACT"
 
-# Opsional: Alamat kontrak token DLP Anda sendiri setelah dideploy ke jaringan, berguna untuk pengujian lokal
+# Opsional: Alamat kontrak token DLP Anda yang telah di-deploy ke jaringan, berguna untuk pengujian lokal
 DLP_TOKEN_MOKSHA_CONTRACT="$DLP_TOKEN_CONTRACT"
 EOF
 }
@@ -225,29 +225,30 @@ module.exports = {
         OPENAI_API_KEY: '$OPENAI_API_KEY',
         DLP_MOKSHA_CONTRACT: '$DLP_CONTRACT',
         DLP_TOKEN_MOKSHA_CONTRACT: '$DLP_TOKEN_CONTRACT',
-        PRIVATE_FILE_ENCRYPTION_PUBLIC_KEY_BASE64: '$PUBLIC_KEY'
+        PRIVATE_FILE_ENCRYPTION_PUBLIC_KEY_BASE64:
+       '$PUBLIC_KEY'
       },
       restart_delay: 10000, // Penundaan restart dalam milidetik
-      max_restarts: 10, // Jumlah restart maksimal
+      max_restarts: 10, // Jumlah maksimal restart
       autorestart: true,
       watch: false,
-      // Tambahkan konfigurasi lainnya jika perlu
+      // Anda bisa menambahkan lebih banyak konfigurasi sesuai kebutuhan
     },
   ],
 };
 EOF
 }
 
-# Memulai node Validator DLP menggunakan PM2
+# Menggunakan PM2 untuk memulai node Validator DLP
 function start_validator() {
-    echo "Memulai node Validator DLP menggunakan PM2..."
+    echo "Menggunakan PM2 untuk memulai node Validator DLP..."
     pm2 start $DLP_PATH/ecosystem.config.js
 
-    echo "Mengatur PM2 agar otomatis mulai saat boot..."
+    echo "Mengatur PM2 agar otomatis mulai saat booting..."
     pm2 startup systemd -u root --hp /root
     pm2 save
 
-    echo "Node Validator DLP telah dimulai. Anda bisa melihat log dengan 'pm2 logs vana-validator'."
+    echo "Node Validator DLP telah dimulai. Anda dapat menggunakan 'pm2 logs vana-validator' untuk melihat log."
 }
 
 # Menginstal node Validator DLP
@@ -284,10 +285,13 @@ function uninstall_node() {
 # Menu utama
 function main_menu() {
     clear
-    echo "========================= Instalasi Node Validator VANA DLP =======================================
-    echo "Join Airdrop Node: https://t.me/airdrop_node"
-    echo "Pilih operasi yang ingin Anda lakukan:"
-    echo "1. Instalasi node Validator DLP"
+    echo "Script dan tutorial ini dibuat oleh pengguna Twitter Da Du Ge @y95277777, bersifat open source dan gratis, jangan percaya kepada pihak yang meminta biaya."
+    echo "========================= Instalasi Node Validator DLP VANA ======================================="
+    echo "Grup Komunitas Node di Telegram: https://t.me/niuwuriji"
+    echo "Channel Komunitas Node di Telegram: https://t.me/niuwuriji"
+    echo "Komunitas Node di Discord: https://discord.gg/GbMV5EcNWF"
+    echo "Silakan pilih tindakan yang ingin Anda lakukan:"
+    echo "1. Instal node Validator DLP"
     echo "2. Lihat log node"
     echo "3. Hapus node"
     read -p "Masukkan pilihan (1-3): " OPTION
@@ -299,6 +303,5 @@ function main_menu() {
     esac
 }
 
-# Tampilkan menu utama
+# Menampilkan menu utama
 main_menu
-
