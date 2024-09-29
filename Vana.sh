@@ -285,11 +285,9 @@ function uninstall_node() {
 # Menu utama
 function main_menu() {
     clear
-    echo "Script dan tutorial ini dibuat oleh pengguna Twitter Da Du Ge @y95277777, bersifat open source dan gratis, jangan percaya kepada pihak yang meminta biaya."
-    echo "========================= Instalasi Node Validator DLP VANA ======================================="
-    echo "Grup Komunitas Node di Telegram: https://t.me/niuwuriji"
-    echo "Channel Komunitas Node di Telegram: https://t.me/niuwuriji"
-    echo "Komunitas Node di Discord: https://discord.gg/GbMV5EcNWF"
+    # Tampilkan Logo
+curl -s https://raw.githubusercontent.com/choir94/Airdropguide/refs/heads/main/logo.sh | bash
+sleep 3
     echo "Silakan pilih tindakan yang ingin Anda lakukan:"
     echo "1. Instal node Validator DLP"
     echo "2. Lihat log node"
